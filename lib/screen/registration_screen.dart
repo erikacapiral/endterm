@@ -24,10 +24,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
     return Scaffold(
       body: isLoading? Center(
-        child: Container(
+        child: SizedBox(
           height: size.height / 20,
           width: size.height / 20,
-          child: CircularProgressIndicator(),
+          child: const CircularProgressIndicator(),
         ),
       ) : SingleChildScrollView(
         child: Column(
@@ -48,7 +48,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             SizedBox(
               height: size.height / 50,
             ),
-            Container(
+            SizedBox(
               width: size.width / 1.1,
               child: const Text(
                 'Welcome',
@@ -58,7 +58,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: size.width / 1.1,
               child: const Text(
                 'Create account to continue!',
@@ -113,7 +113,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 onDoubleTap: () {
                   Navigator.pop(context);
                 },
-                child: Text(
+                child: const Text(
                   'Login',
                   style: TextStyle(
                     color: Colors.blue,
@@ -143,7 +143,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               setState(() {
                 isLoading = false;
               });
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
               print('Account Created Successful');
             }
             else {
@@ -163,7 +163,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           borderRadius: BorderRadius.circular(10),
           color: Colors.blue
         ),
-        child: Text(
+        child: const Text(
           'Create Account',
           style: TextStyle(
             color: Colors.white,
@@ -176,7 +176,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   Widget field(Size size, String hintText, IconData icon, TextEditingController cont) {
-    return Container(
+    return SizedBox(
       height: size.height / 14,
       width: size.width / 1.1,
       child: TextField(
@@ -184,7 +184,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         decoration: InputDecoration(
           prefixIcon: Icon(icon),
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: Colors.grey
           ),
           border: OutlineInputBorder(

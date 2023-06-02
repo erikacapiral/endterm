@@ -56,13 +56,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
  } 
 
   void onSearch() async {
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     setState(() {
       isLoading = true;
     });
 
-    await _firestore.collection('users')
+    await firestore.collection('users')
       .where('name', isEqualTo: _search.text)
       .get()
       .then((value) {
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Home Screen'
         ),
         actions: [
@@ -89,17 +89,17 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             onPressed: () {
               logOut(context);
             }, 
-            icon: Icon(
+            icon: const Icon(
               Icons.logout
             )
         )
         ],
       ),
       body: isLoading? Center(
-        child: Container(
+        child: SizedBox(
           height: size.height / 20,
           width: size.height / 20,
-          child: CircularProgressIndicator(),
+          child: const CircularProgressIndicator(),
         ),
       ) : Column(
         children: [
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             height: size.height / 14,
             width: size.width,
             alignment: Alignment.center,
-            child: Container(
+            child: SizedBox(
               height: size.height / 14,
               width: size.width / 1.15,
               child: TextField(
@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           ),
           ElevatedButton(
             onPressed: onSearch, 
-            child: Text(
+            child: const Text(
               'Search'
             )
           ),
@@ -145,13 +145,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatRoom(chatRoomId: roomId, userMap: userMap!)));
             },
-            leading: Icon(
+            leading: const Icon(
               Icons.account_box,
               color: Colors.black,
             ),
             title: Text(
               userMap!['name'],
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 17,
                 fontWeight: FontWeight.w500
@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             subtitle: Text(
               userMap!['email']
             ),
-            trailing: Icon(
+            trailing: const Icon(
               Icons.chat_rounded,
               color: Colors.black,
             ),
@@ -171,11 +171,11 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
+        child: const Icon(
           Icons.group
         ),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => GroupChat()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const GroupChat()));
         }
       ),
     );

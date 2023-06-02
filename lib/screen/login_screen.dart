@@ -24,10 +24,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       body: isLoading? Center(
-        child: Container(
+        child: SizedBox(
           height: size.height / 20,
           width: size.height / 20,
-          child: CircularProgressIndicator(),
+          child: const CircularProgressIndicator(),
         ),
       ) : SingleChildScrollView(
         child: Column(
@@ -48,9 +48,9 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: size.height / 50,
             ),
-            Container(
+            SizedBox(
               width: size.width / 1.3,
-              child: Text(
+              child: const Text(
                 'Welcome',
                 style: TextStyle(
                   fontSize: 28,
@@ -58,9 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: size.width / 1.3,
-              child: Text(
+              child: const Text(
                 'Sign in to continue',
                 style: TextStyle(
                   color: Colors.grey,
@@ -100,9 +100,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             GestureDetector(
               onDoubleTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => CreateAccountScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CreateAccountScreen()));
               },
-              child: Text(
+              child: const Text(
                 'Create Account',
                 style: TextStyle(
                   color: Colors.blue,
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
               setState(() {
                 isLoading = false;
               });
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
             }
             else {
               print('Login Failed');
@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
           borderRadius: BorderRadius.circular(10),
           color: Colors.blue
         ),
-        child: Text(
+        child: const Text(
           'Login',
           style: TextStyle(
             color: Colors.white,
@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget field(Size size, String hintText, IconData icon, TextEditingController cont) {
-    return Container(
+    return SizedBox(
       height: size.height / 14,
       width: size.width / 1.1,
       child: TextField(
@@ -174,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
         decoration: InputDecoration(
           prefixIcon: Icon(icon),
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: Colors.grey
           ),
           border: OutlineInputBorder(

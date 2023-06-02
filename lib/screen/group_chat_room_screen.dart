@@ -22,13 +22,13 @@ class GroupChatRoom extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Group Name'
         ),
         actions: [
           IconButton(
             onPressed: () {}, 
-            icon: Icon(
+            icon: const Icon(
               Icons.more_vert
             )
           )
@@ -37,7 +37,7 @@ class GroupChatRoom extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: size.height / 1.27,
               width: size.width,
               child: ListView.builder(
@@ -51,12 +51,12 @@ class GroupChatRoom extends StatelessWidget {
               height: size.height / 10,
               width: size.width,
               alignment: Alignment.center,
-              child: Container(
+              child: SizedBox(
                 height: size.height / 12,
                 width: size.width / 1.1,
                 child: Row(
                   children: [
-                    Container(
+                    SizedBox(
                       height: size.height / 12,
                       width: size.width / 1.5,
                       child: TextField(
@@ -66,7 +66,7 @@ class GroupChatRoom extends StatelessWidget {
                             onPressed: () {
                               
                             }, 
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.photo
                             )
                           ),
@@ -81,7 +81,7 @@ class GroupChatRoom extends StatelessWidget {
                       onPressed: () {
 
                       }, 
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.send
                       )
                     )

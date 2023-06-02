@@ -16,7 +16,7 @@ class _GroupChatState extends State<GroupChat> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Groups'
         ),
       ),
@@ -27,7 +27,7 @@ class _GroupChatState extends State<GroupChat> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => GroupChatRoom()));
             },
-            leading: Icon(
+            leading: const Icon(
               Icons.group
             ),
             title: Text(
@@ -37,11 +37,11 @@ class _GroupChatState extends State<GroupChat> {
         }
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.create
-        ),
         onPressed: () {},
         tooltip: 'Create Group',
+        child: const Icon(
+          Icons.create
+        ),
       ),
     );
   }

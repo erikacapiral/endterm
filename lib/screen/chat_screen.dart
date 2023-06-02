@@ -20,9 +20,9 @@ class ChatRoom extends StatelessWidget {
   File? imageFile;
 
   Future getImage() async {
-    ImagePicker _picker = ImagePicker();
+    ImagePicker picker = ImagePicker();
 
-    await _picker.pickImage(source: ImageSource.gallery).then((xFile) {
+    await picker.pickImage(source: ImageSource.gallery).then((xFile) {
       if (xFile != null) {
         imageFile = File(xFile.path);
         uploadImage();
@@ -32,7 +32,7 @@ class ChatRoom extends StatelessWidget {
 
   Future uploadImage() async {
 
-    String fileName = Uuid().v1();
+    String fileName = const Uuid().v1();
     int status = 1;
     
     await _firestore.collection('chatroom').doc(chatRoomId).collection('chats').doc(fileName).set({
@@ -99,7 +99,7 @@ class ChatRoom extends StatelessWidget {
                     ),
                     Text(
                       userMap['status'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14
                       ),
                     )
@@ -118,7 +118,7 @@ class ChatRoom extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: size.height / 1.25,
               width: size.width,
               child: StreamBuilder<QuerySnapshot>(
@@ -156,12 +156,12 @@ class ChatRoom extends StatelessWidget {
         height: size.height / 10,
         width: size.width,
         alignment: Alignment.center,
-        child: Container(
+        child: SizedBox(
           height: size.height / 12,
           width: size.width / 1.1,
           child: Row(
             children: [
-              Container(
+              SizedBox(
                 height: size.height / 12,
                 width: size.width / 1.5,
                 child: TextField(
@@ -171,7 +171,7 @@ class ChatRoom extends StatelessWidget {
                       onPressed: () {
                         getImage();
                       }, 
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.photo
                       )
                     ),
@@ -184,7 +184,7 @@ class ChatRoom extends StatelessWidget {
               ),
               IconButton(
                 onPressed: onSendMessage, 
-                icon: Icon(
+                icon: const Icon(
                   Icons.send
                 )
               )
@@ -202,11 +202,11 @@ class ChatRoom extends StatelessWidget {
       ? Alignment.centerRight 
       : Alignment.centerLeft,
       child: Container(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: 10,
           horizontal: 14
         ),
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           vertical: 5,
           horizontal: 8
         ),
@@ -226,7 +226,7 @@ class ChatRoom extends StatelessWidget {
     ) : Container(
       height: size.height / 2.5,
       width: size.width,
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 5,
         horizontal: 5
       ),
@@ -245,7 +245,7 @@ class ChatRoom extends StatelessWidget {
           child: map['message'] != '' ? Image.network(
             map['message'],
             fit: BoxFit.cover,
-          ) : CircularProgressIndicator(),
+          ) : const CircularProgressIndicator(),
         ),
       ),
     );

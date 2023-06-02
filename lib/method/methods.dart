@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:todo_assignment/screen/login_screen.dart';
 
 Future<User?> createAccount(String name, String email, String password) async {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   try {
     User? user = (
-      await _auth.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         email: email, 
         password: password
       )
@@ -20,11 +20,11 @@ Future<User?> createAccount(String name, String email, String password) async {
       
       user.updateProfile(displayName: name);
 
-      await _firestore.collection('users').doc(_auth.currentUser!.uid).set({
+      await firestore.collection('users').doc(auth.currentUser!.uid).set({
         'name' : name,
         'email' : email,
         'status' : 'Unavailable',
-        'uid' : _auth.currentUser!.uid
+        'uid' : auth.currentUser!.uid
       });
       return user;
     }
@@ -35,14 +35,15 @@ Future<User?> createAccount(String name, String email, String password) async {
     print(e);
     return null;
   }
+  return null;
 }
 
 Future<User?> logIn(String email, String password) async {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   try {
     User? user = (
-      await _auth.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: email, 
         password: password
       )
@@ -63,10 +64,10 @@ Future<User?> logIn(String email, String password) async {
 }
 
 Future logOut(BuildContext context) async {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
   try {
-    await _auth.signOut().then((value) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    await auth.signOut().then((value) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
     });
   } catch (e) {
     print('error');
